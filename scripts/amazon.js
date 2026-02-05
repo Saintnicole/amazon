@@ -1,4 +1,4 @@
-
+import {cart} from '../data/cart.js';
 
     let productsHTML = '';
 
@@ -88,8 +88,6 @@
           });
           document.querySelector('.js-cart-qty').innerHTML = cartQuantity;
 
-          console.log(cartQuantity);
-          console.log(cart);
         });
     });
 

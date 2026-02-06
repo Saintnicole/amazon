@@ -1,5 +1,6 @@
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 
     let productsHTML = '';
@@ -25,7 +26,7 @@ import {products} from '../data/products.js';
           </div>
 
           <div class="product-price">
-            $${(product.priceCent / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -60,26 +61,6 @@ import {products} from '../data/products.js';
     const productsGrid = document.querySelector('.js-products-grid');
     productsGrid.innerHTML = productsHTML;
     
-    function addToCart(productId) {
-       let matchingItem;
-
-          cart.forEach((cartItem) => {
-            if (productId=== cartItem.productId) {
-              matchingItem = cartItem;
-            }
-          });
-
-          if (matchingItem) {
-            matchingItem.quantity += 1;
-          }else{
-
-            cart.push({
-              productId: productId,
-              quantity: 1
-            });
-          }
-
-    }
 
     function updateCartQty() {
       let cartQuantity = 0;
@@ -101,5 +82,7 @@ import {products} from '../data/products.js';
         
         });
     });
+
+    updateCartQty();
 
     

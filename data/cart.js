@@ -1,11 +1,24 @@
-export let cart = [{
-     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-     quantity: 2
-},{
-    productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    quantity: 1
+export let cart = JSON.parse(localStorage.getItem('cart'));
+
+if(!cart){
+    cart =[
+    {
+         productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+         quantity: 2
+    },
+    {
+        productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+        quantity: 1
+    }
+    ]; 
+    // THIS WAS A DEFAULT CART ITEM THAT WE USED TO TEST; HOWEVER THE CODE BELOW HELPS ME TO GET THE CART FROM LOCAL STORAGE BASED ON MY ALREADY SELECTED ITEMS
 }
-];
+
+function saveToStorage() {
+
+    // local storage can only save strings so we are converting the cart into a string
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 export function addToCart(productId) {
        let matchingItem;
@@ -25,6 +38,8 @@ export function addToCart(productId) {
               quantity: 1
             });
           }
+
+          saveToStorage();
     }
 
     export  function removeFromCart(productId){
@@ -36,4 +51,5 @@ export function addToCart(productId) {
             }
         });
         cart = newCart;
+        saveToStorage();
     }

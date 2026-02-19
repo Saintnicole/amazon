@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, getCartQuantity } from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -6,6 +6,7 @@ import { formatCurrency } from './utils/money.js';
     let productsHTML = '';
 
     products.forEach((product) => {
+      // If I used a regular = sign, the code would behave like a "reset" button instead of a "list" builder.
         productsHTML += `        
         <div class="product-container">
           <div class="product-image-container">
@@ -63,13 +64,14 @@ import { formatCurrency } from './utils/money.js';
     
 
     function updateCartQty() {
-      let cartQuantity = 0;
+        const cartQuantity = getCartQuantity();
+          const cartQtyElement = document.querySelector('.js-cart-qty');
 
-          cart.forEach((cartItem)=>{
-              cartQuantity +=cartItem.quantity;
-
-          });
-          document.querySelector('.js-cart-qty').innerHTML = cartQuantity;
+          if (cartQuantity === 0) {
+            cartQtyElement.innerHTML = '';
+          } else {
+            cartQtyElement.innerHTML = cartQuantity;
+          }
 
     }
 

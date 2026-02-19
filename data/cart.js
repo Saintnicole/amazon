@@ -31,8 +31,8 @@ export function addToCart(productId) {
 
           if (matchingItem) {
             matchingItem.quantity += 1;
-          }else{
-
+          }
+          else{
             cart.push({
               productId: productId,
               quantity: 1
@@ -52,4 +52,13 @@ export function addToCart(productId) {
         });
         cart = newCart;
         saveToStorage();
+    }
+    export function getCartQuantity() {
+    let quantity = 0;
+
+    cart.forEach(cartItem => {
+        quantity += cartItem.quantity;
+    });
+
+    return quantity;  
     }

@@ -75,4 +75,20 @@ export function addToCart(productId) {
         localStorage.setItem('cart', JSON.stringify(cart));
 
     }
+
+
+    // this will give us the cart item that matches the specified productID and save it in variable matchingItem
+    export function updateDeliveryOption(productId, deliveryOptionId){
+        let matchingItem;
+
+          cart.forEach((cartItem) => {
+            if (productId=== cartItem.productId) {
+              matchingItem = cartItem;
+            }
+          });
+
+          matchingItem.deliveryOptionId = deliveryOptionId;
+        
+          saveToStorage();
+    }
     

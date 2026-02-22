@@ -1,4 +1,4 @@
-import {cart} from "../../data/cart.js"
+import {cart, getCartQuantity} from "../../data/cart.js"
 import {getProduct} from "../../data/products.js"
 import {formatCurrency} from '../utils/money.js '
 import {getDeliveryOption} from "../../data/deliveryOptions.js"
@@ -26,7 +26,7 @@ export function renderPaymentSummary(){
         </div>
 
         <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div class='js-quantity-summary'>Items (3):</div>
         <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
         </div>
 
@@ -55,4 +55,10 @@ export function renderPaymentSummary(){
         </button>
     `;
     document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
+
+    // these lines of code edit the quantity of items in the payment box
+    let quantityText = document.querySelector('.js-quantity-summary');
+    const summaryQuantity = getCartQuantity();
+    quantityText.innerHTML = `Items (${summaryQuantity})`
+
 } 

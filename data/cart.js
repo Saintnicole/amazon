@@ -1,6 +1,9 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export let cart;
+loadFromStorage();
 
-if(!cart){
+export function loadFromStorage(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    if(!cart){
     cart =[
     {
          productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -14,6 +17,8 @@ if(!cart){
     }
     ]; 
     // THIS WAS A DEFAULT CART ITEM THAT WE USED TO TEST; HOWEVER THE CODE BELOW HELPS ME TO GET THE CART FROM LOCAL STORAGE BASED ON MY ALREADY SELECTED ITEMS
+}
+
 }
 
 function saveToStorage() {

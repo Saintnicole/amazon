@@ -44,3 +44,4 @@ describe('test suite: addToCart', ()=>{
 });
 
 // a flaky test is a test that produces different outcomes without the code being changed.
+// EVERYTHING WE HAVE DONE SO FAR IS CALLED UNIT TESTS BECAUSE WE ARE TESTING SINGLE UNITS/ FUNCTIONS OF CODE

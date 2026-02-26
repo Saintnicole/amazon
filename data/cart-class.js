@@ -1,16 +1,17 @@
 class Cart{
     // classes contain properties and methods
     cartItems; //this is a property
-    localStorageKey;
+    #localStorageKey; // the hashtag encapsulates the key to prevent unintended storage location modification which will cause the data to start storing in a different location
 
     constructor(localStorageKey){
         // constructors are a good place to put your set up code
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        //a property without #is public;it can be accessed from anywhere
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
-    loadFromStorage(){
-      this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    #loadFromStorage(){
+      this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
       if(!this.cartItems){
       this.cartItems =[
       {
@@ -111,6 +112,7 @@ class Cart{
 
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
+
 
 console.log(cart);
 console.log(businessCart);
